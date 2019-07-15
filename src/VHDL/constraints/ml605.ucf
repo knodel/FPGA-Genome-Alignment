@@ -1,0 +1,103 @@
+# MIT License
+#
+# Copyright (c) 2019 Oliver Knodel
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE. 
+
+##
+## Author: Oliver Knodel <oliver.knodel@mailbox.tu-dresden.de>
+## Project:	FPGA-DNA-Sequence-Search
+##
+## Constraints-file for the Virtex-6 (ML605)
+##
+
+NET SM_FAN_PWM	                  	LOC = "L10";    ## 1   on Q24
+NET SM_FAN_TACH                   	LOC = "M10";    ## 2   on R368
+NET SYSCLK_N                      	LOC = "H9";     ## 5   on U11, 5 on U89 (DNP)
+NET SYSCLK_P                      	LOC = "J9";     ## 4   on U11, 4 on U89 (DNP)
+NET CPU_RESET                     	LOC = "H10";    ## 2   on SW10 pushbutton (active-high)
+NET PHY_RESET								LOC = "AH13" | SLEW=SLOW |IOSTANDARD=LVCMOS25;
+
+NET GPIO_LED<0>                   	LOC = "AC22";   ## 2   on LED DS12, 1 on J62
+NET GPIO_LED<1>                    	LOC = "AC24";   ## 2   on LED DS11, 2 on J62
+NET GPIO_LED<2>                    	LOC = "AE22";   ## 2   on LED DS9,  3 on J62
+NET GPIO_LED<3>                   	LOC = "AE23";   ## 2   on LED DS10, 4 on J62
+NET GPIO_LED<4>                    	LOC = "AB23";   ## 2   on LED DS15, 5 on J62
+NET GPIO_LED<5>                    	LOC = "AG23";   ## 2   on LED DS14, 6 on J62
+NET GPIO_LED<6>                    	LOC = "AE24";   ## 2   on LED DS22, 7 on J62
+NET GPIO_LED<7>                    	LOC = "AD24";   ## 2   on LED DS21, 8 on J62
+
+NET GPIO_DIP_SW                  LOC = "D22";    ## 1   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<1>                  LOC = "C22";    ## 2   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<2>                  LOC = "L21";    ## 3   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<3>                  LOC = "L20";    ## 4   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<4>                  LOC = "C18";    ## 5   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<5>                  LOC = "B18";    ## 6   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<6>                  LOC = "K22";    ## 7   on SW1 DIP switch (active-high)
+#NET GPIO_DIP_SW<7>                  LOC = "K21";    ## 8   on SW1 DIP switch (active-high)
+
+NET LCD_DB<0>                    	LOC = "AD14";   ## 4   on J41
+NET LCD_DB<1>                    	LOC = "AK11";   ## 3   on J41
+NET LCD_DB<2>                    	LOC = "AJ11";   ## 2   on J41
+NET LCD_DB<3>                    	LOC = "AE12";   ## 1   on J41
+NET LCD_E_LS                      	LOC = "AK12";   ## 9   on J41
+NET LCD_RS_LS                    	LOC = "T28";    ## 11  on J41
+NET LCD_RW_LS                   		LOC = "AC14";   ## 10  on J41
+
+
+#INST "search/S[2].search_units/block_0/BU2*" LOC = "RAMB36_X3Y4";
+# 200 MHz reference clock
+NET "SYSCLK_N" TNM_NET = SYSCLK_N;
+TIMESPEC TS_SYSCLK_N = PERIOD "SYSCLK_N" 5 ns HIGH 50%;
+NET "SYSCLK_P" TNM_NET = SYSCLK_P;
+TIMESPEC TS_SYSCLK_P = PERIOD "SYSCLK_P" 5 ns HIGH 50%;
+
+NET "*/clk" TNM_NET = "INT_SYS_CLK";
+TIMESPEC "TS_SYSCLK" = PERIOD "INT_SYS_CLK" 5 ns HIGH 50%;
+
+# Ethernet GMII PHY-side receive clock
+NET "GMII_RX_CLK" TNM_NET = "phy_clk_rx";
+TIMEGRP "gmii_clk_phy_rx" = "phy_clk_rx";
+TIMESPEC "TS_gmii_clk_phy_rx" = PERIOD "gmii_clk_phy_rx" 7.5 ns HIGH 50 %;
+
+
+# Locate the GMII physical interface pins
+INST "GMII_TXD<0>" LOC = "AM11" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<1>" LOC = "AL11" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<2>" LOC = "AG10" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<3>" LOC = "AG11" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<4>" LOC = "AL10" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<5>" LOC = "AM10" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<6>" LOC = "AE11" | IOSTANDARD = LVCMOS25;
+INST "GMII_TXD<7>" LOC = "AF11" | IOSTANDARD = LVCMOS25;
+INST "GMII_TX_EN"  LOC = "AJ10" | IOSTANDARD = LVCMOS25;
+INST "GMII_TX_ER"  LOC = "AH10" | IOSTANDARD = LVCMOS25;
+INST "GMII_TX_CLK" LOC = "AH12" | IOSTANDARD = LVCMOS25;
+
+INST "GMII_RXD<0>" LOC = "AN13" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<1>" LOC = "AF14" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<2>" LOC = "AE14" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<3>" LOC = "AN12" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<4>" LOC = "AM12" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<5>" LOC = "AD11" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<6>" LOC = "AC12" | IOSTANDARD = LVCMOS25;
+INST "GMII_RXD<7>" LOC = "AC13" | IOSTANDARD = LVCMOS25;
+INST "GMII_RX_DV"  LOC = "AM13" | IOSTANDARD = LVCMOS25;
+INST "GMII_RX_ER"  LOC = "AG12" | IOSTANDARD = LVCMOS25;
+INST "GMII_RX_CLK" LOC = "AP11" | IOSTANDARD = LVCMOS25;
