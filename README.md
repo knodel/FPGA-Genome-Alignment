@@ -18,5 +18,5 @@ The overall architecture is based on a host system and an over Gigabit Ethernet 
 
 ### References
 
-* Next-generation massively parallel short-read mapping on FPGAs;
+* [Next-generation massively parallel short-read mapping on FPGAs](https://github.com/knodel/FPGA-Genome-Alignment/blob/master/documentation/Next-Generation_Massively_Parallel_Short-Read_Mapping_on_FPGAs.pdf);
 *O Knodel, TB Preußer, RG Spallek* - ASAP 2011-22nd IEEE International Conference on Application-specific Systems, Architectures and Processors, 2011.
