@@ -14,18 +14,18 @@ The overall architecture is based on a host system and an over Gigabit Ethernet 
 
 ## Usage (Host-Program)
 
-Command | Short | Description |
--------------------------------
---query <filename>     | -q | Reads in FASTA or FASTQ |      
---database <filename>  | -d | genome database in FASTA |
---bindb <filename>     | -b | binary database |
---output <filename>    | -o | output filename |
---sam                  | -s | write the output in SAM format |
---unmap                | -u | additional output of unmapped reads |
---transform            | -t | transformation of the ASCII-Database into the required a binary format |
---mismatch [int]       | -m | number of allowed mismatches |
---status               | -i | display FPGA status information |
---help                 | -h | this help text |
+| Command | Short | Description |
+|---------|:-----:|:------------|
+| --query <filename>     | -q | Reads in FASTA or FASTQ |      
+| --database <filename>  | -d | genome database in FASTA |
+| --bindb <filename>     | -b | binary database |
+| --output <filename>    | -o | output filename |
+| --sam                  | -s | write the output in SAM format |
+| --unmap                | -u | additional output of unmapped reads |
+| --transform            | -t | transformation of the ASCII-Database into the required a binary format |
+| --mismatch [int]       | -m | number of allowed mismatches |
+| --status               | -i | display FPGA status information |
+| --help                 | -h | this help text |
 
 ## Documentation and References
 
