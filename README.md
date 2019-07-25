@@ -14,9 +14,9 @@ The overall architecture is based on a host system and an over Gigabit Ethernet 
 
 ## Usage
 
-## Performance and Results
+## Documentation and References
 
-### References
+The [Diploma Thesis](https://nbn-resolving.org/urn:nbn:de:bsz:14-qucosa-136773) (German) gives the overall background,  implementation insights and performance results. The results are also published in an international conference: 
 
 * [Next-generation massively parallel short-read mapping on FPGAs](https://github.com/knodel/FPGA-Genome-Alignment/blob/master/documentation/Next-Generation_Massively_Parallel_Short-Read_Mapping_on_FPGAs.pdf);
-*O Knodel, TB Preußer, RG Spallek* - ASAP 2011-22nd IEEE International Conference on Application-specific Systems, Architectures and Processors, 2011.
+*O Knodel, TB Preußer, RG Spallek* - ASAP 2011-22nd IEEE International Conference on Application-specific Systems, Architectures and Processors, Santa Monica, USA, September 2011.
