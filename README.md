@@ -12,7 +12,20 @@ On the contrary, advanced fast alignment heuristics like Bowtie and Maq can only
 
 The overall architecture is based on a host system and an over Gigabit Ethernet directly connected FPGA board ([ML605 develpment board](https://www.xilinx.com/products/boards-and-kits/ek-v6-ml605-g.html)) for the alignment of the sequences. The FPGA design guarantees to find all alignment locations of a read in the database while also allowing a freely adjustable character mismatch threshold. 
 
-## Usage
+## Usage (Host-Program)
+
+Command | Short | Description |
+-------------------------------
+--query <filename>     | -q | Reads in FASTA or FASTQ |      
+--database <filename>  | -d | genome database in FASTA |
+--bindb <filename>     | -b | binary database |
+--output <filename>    | -o | output filename |
+--sam                  | -s | write the output in SAM format |
+--unmap                | -u | additional output of unmapped reads |
+--transform            | -t | transformation of the ASCII-Database into the required a binary format |
+--mismatch [int]       | -m | number of allowed mismatches |
+--status               | -i | display FPGA status information |
+--help                 | -h | this help text |
 
 ## Documentation and References
 
